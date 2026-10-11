@@ -141,7 +141,8 @@
   .release { text-align: center; display: flex; flex-direction: column; gap: 6px; }
   .date {
     font-family: var(--font-label); font-weight: 600; margin: 0;
-    font-size: clamp(3.4rem, 19vw, 6.4rem); line-height: 1; letter-spacing: .03em;
+    font-size: clamp(2.5rem, 13.6vw, 6.4rem); line-height: 1; letter-spacing: .03em;
+    white-space: nowrap; max-width: 100%;
     color: var(--blood); font-variant-numeric: tabular-nums;
     text-shadow: 0 0 26px var(--blood-glow);
   }
@@ -307,6 +308,11 @@
 
   @media (prefers-reduced-motion: reduce) {
     .grain, .fog, .fog2, .title, .side span { animation: none; }
+    .scare.on canvas { animation: scare-face-calm 1.15s ease-out forwards; }
+  }
+  @keyframes scare-face-calm {
+    0% { transform: scale(.8); opacity: 0; } 8% { opacity: 1; }
+    88% { transform: scale(1.25); opacity: 1; } 100% { transform: scale(1.3); opacity: 0; }
   }
   @media (max-width: 380px) {
     .poster { padding-inline: 16px; }
@@ -1113,15 +1119,19 @@
     }
 
     function fire() {
-      if (fired || reduceMotion) return;
+      // Ook bij "verminder beweging": de schrik hoort erbij, alleen zonder schudden (zie CSS).
+      if (fired) return;
       fired = true;
       var delay = 0;
-      if (Score.isRunning()) { Score.hush(true); delay = 1100; }
+      try { if (Score.isRunning()) { Score.hush(true); delay = 1100; } } catch (e) { delay = 0; }
       setTimeout(function () {
-        draw();
+        try { draw(); } catch (e) { /* zonder gezicht toch de rode flits */ }
         el.classList.add('on');
-        Score.scream();
-        setTimeout(function () { el.classList.remove('on'); Score.hush(false); }, 1150);
+        try { Score.scream(); } catch (e) { /* geluid mag falen, het beeld niet */ }
+        setTimeout(function () {
+          el.classList.remove('on');
+          try { Score.hush(false); } catch (e) { /* negeren */ }
+        }, 1150);
       }, delay);
     }
     return { fire: fire };
