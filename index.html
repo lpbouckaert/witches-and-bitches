@@ -1,0 +1,1199 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><meta property="og:title" content="Witches &amp; Bitches"><meta property="og:description" content="Halloween party · 31.10.2026 · Oudenaarde · RSVP before 21.10"><meta name="theme-color" content="#000000"><style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Witches & Bitches</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nosifer&family=Oswald:wght@400;600&family=Special+Elite&display=swap">
+<style>
+  /* Layout: one tall movie-poster column, centered, framed; a splash curtain in front until the guest enters. */
+  :root {
+    --ink: #000000;        /* pure black */
+    --ink-2: #000000;
+    --pumpkin: #e8641a;    /* the only orange, for pumpkins */
+    --bone: #e9dfc6;       /* aged poster paper */
+    --bone-dim: #a89e86;   /* faded bone */
+    --blood: #b3121b;      /* the one accent */
+    --blood-glow: rgba(179, 18, 27, .55);
+    --line: rgba(179, 18, 27, .55);
+    --line-soft: rgba(179, 18, 27, .3);
+    --font-title: 'Nosifer', 'Impact', 'Arial Black', sans-serif;
+    --font-body: 'Special Elite', 'Courier New', Courier, monospace;
+    --font-label: 'Oswald', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    padding-inline: 16px;
+    padding-block: 28px 56px;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--blood); color: var(--bone); }
+
+  /* ---------- Atmosphere layers ---------- */
+  .grain {
+    position: fixed; inset: -50%; width: 200%; height: 200%;
+    pointer-events: none; z-index: 40; opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 1.2s steps(6) infinite;
+  }
+  @keyframes grain {
+    0% { transform: translate(0, 0); } 20% { transform: translate(-3%, 2%); }
+    40% { transform: translate(2%, -4%); } 60% { transform: translate(-4%, -1%); }
+    80% { transform: translate(3%, 3%); } 100% { transform: translate(0, 0); }
+  }
+  .vignette {
+    position: fixed; inset: 0; pointer-events: none; z-index: 39;
+    background: radial-gradient(ellipse 70% 60% at 50% 45%, transparent 50%, rgba(0, 0, 0, .78) 100%);
+  }
+
+  /* ---------- Splash curtain ---------- */
+  .splash {
+    position: fixed; inset: 0; z-index: 60;
+    background: var(--ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 22px; text-align: center; padding: 24px 16px;
+    transition: opacity .9s ease, visibility 0s linear .9s;
+  }
+  .splash.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+  .splash .eyebrow { margin-bottom: 4px; }
+  .splash .title { font-size: clamp(2.1rem, 9.5vw, 4rem); }
+  .splash .enter {
+    margin-top: 10px;
+    font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: .22em;
+    font-size: 1rem; color: var(--bone); background: transparent;
+    border: 1px solid var(--blood); padding: 16px 30px 14px; cursor: pointer;
+    transition: background .25s, color .25s, border-color .25s, box-shadow .25s;
+  }
+  .splash .enter:hover, .splash .enter:focus-visible {
+    background: var(--blood); border-color: var(--blood); color: var(--bone);
+    box-shadow: 0 0 34px var(--blood-glow); outline: none;
+  }
+  .splash .quiet {
+    font-family: var(--font-label); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem;
+    color: var(--bone-dim); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+  }
+  .splash .quiet:hover, .splash .quiet:focus-visible { color: var(--bone); outline: none; }
+  .splash .hint { font-size: .85rem; color: var(--bone-dim); margin: 0; }
+
+  /* ---------- Poster ---------- */
+  .poster {
+    position: relative; z-index: 1;
+    max-width: 540px; margin-inline: auto;
+    border: 1px solid var(--line);
+    outline: 1px solid var(--line); outline-offset: 5px;
+    padding: 34px 22px 26px;
+    display: flex; flex-direction: column; gap: 34px;
+    background: var(--ink);
+  }
+  .poster::before, .poster::after {
+    content: ""; position: absolute; width: 16px; height: 16px; border-color: var(--blood); border-style: solid;
+  }
+  .poster::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .poster::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .eyebrow {
+    font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: .3em; font-size: .74rem;
+    color: var(--blood); margin: 0; text-align: center;
+  }
+  .masthead { text-align: center; display: flex; flex-direction: column; gap: 14px; }
+  .title {
+    font-family: var(--font-title); font-weight: 400; margin: 0;
+    font-size: clamp(2.05rem, 10vw, 3.9rem); line-height: 1.08;
+    color: var(--blood);
+    text-shadow: 0 0 22px var(--blood-glow), 0 2px 0 #4a0309;
+    display: flex; flex-direction: column; align-items: center;
+    animation: flicker 9s infinite;
+  }
+  .title .amp { font-size: .55em; color: var(--bone); text-shadow: none; line-height: 1.4; }
+  @keyframes flicker {
+    0%, 18%, 20%, 23%, 25%, 61%, 63%, 100% { opacity: 1; }
+    19%, 24%, 62% { opacity: .45; }
+  }
+  .tagline { margin: 0; font-size: 1.02rem; color: var(--bone); }
+  .tagline em { font-style: normal; color: var(--blood); }
+
+  /* Scene */
+  .scene {
+    position: relative; width: 100%; max-width: 100%; aspect-ratio: 4 / 3; overflow: hidden;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, #120a18 0%, #06040a 60%, #000 100%);
+  }
+  .scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .fog, .fog2 {
+    position: absolute; left: -20%; right: -20%; bottom: -6%; height: 48%; pointer-events: none;
+    filter: blur(14px);
+  }
+  .fog {
+    background: radial-gradient(55% 90% at 25% 100%, rgba(196, 180, 214, .34), transparent 70%),
+                radial-gradient(45% 80% at 72% 100%, rgba(196, 180, 214, .26), transparent 70%);
+    animation: fogdrift 16s ease-in-out infinite alternate;
+  }
+  .fog2 {
+    background: radial-gradient(50% 70% at 50% 100%, rgba(196, 180, 214, .22), transparent 70%);
+    animation: fogdrift 23s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes fogdrift { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+
+  /* Release block */
+  .release { text-align: center; display: flex; flex-direction: column; gap: 6px; }
+  .date {
+    font-family: var(--font-label); font-weight: 600; margin: 0;
+    font-size: clamp(3.4rem, 19vw, 6.4rem); line-height: 1; letter-spacing: .03em;
+    color: var(--blood); font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 26px var(--blood-glow);
+  }
+  .date span { color: var(--bone); }
+  .time {
+    font-family: var(--font-label); text-transform: uppercase; letter-spacing: .28em; font-size: 1rem;
+    margin: 4px 0 0; color: var(--bone);
+  }
+  .venue { margin: 2px 0 0; font-size: 1.05rem; color: var(--bone); }
+  .venue small { display: block; font-size: .85rem; color: var(--blood); margin-top: 2px; }
+
+  /* Rules */
+  .rules { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .rules li {
+    display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: baseline;
+    font-family: var(--font-label); text-transform: uppercase; letter-spacing: .18em; font-size: .95rem;
+    padding: 12px 0; border-top: 1px dashed var(--line);
+  }
+  .rules li:last-child { border-bottom: 1px dashed var(--line); }
+  .rules li b { color: var(--blood); font-weight: 600; font-family: var(--font-body); letter-spacing: 0; font-size: 1.1rem; text-align: center; }
+  .rules li small { display: block; font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: .85rem; color: var(--bone-dim); margin-top: 2px; }
+
+  /* RSVP */
+  .rsvp { display: flex; flex-direction: column; gap: 18px; }
+  .rsvp h2 {
+    font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: .2em;
+    font-size: 1.35rem; margin: 0; text-align: center; color: var(--bone); text-wrap: balance;
+  }
+  .rsvp h2 em { font-style: normal; color: var(--blood); }
+  .rsvp .lede { margin: 0; text-align: center; color: var(--bone-dim); font-size: .95rem; }
+  form { display: flex; flex-direction: column; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label, legend {
+    font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--blood);
+    padding: 0;
+  }
+  input[type="text"], textarea {
+    width: 100%; min-width: 0; background: rgba(233, 223, 198, .04); color: var(--bone);
+    border: 1px solid var(--line); border-radius: 0; padding: 12px 14px;
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.4;
+  }
+  textarea { resize: vertical; min-height: 72px; }
+  input:focus-visible, textarea:focus-visible { outline: 2px solid var(--blood); outline-offset: 1px; border-color: var(--blood); }
+  fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .choice { position: relative; }
+  .choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .choice span {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    text-align: center; padding: 14px 10px; min-height: 76px; cursor: pointer;
+    border: 1px solid var(--blood); color: var(--bone);
+    font-family: var(--font-label); text-transform: uppercase; letter-spacing: .16em; font-size: .85rem;
+    transition: background .2s, border-color .2s, box-shadow .2s;
+  }
+  .choice span small { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: .8rem; color: var(--bone-dim); }
+  .choice input:checked + span { background: var(--blood); border-color: var(--blood); box-shadow: 0 0 26px var(--blood-glow); }
+  .choice input:checked + span small { color: var(--bone); }
+  .choice input:focus-visible + span { outline: 2px solid var(--bone); outline-offset: 2px; }
+  .error { margin: 0; color: var(--blood); font-size: .9rem; min-height: 1.2em; }
+  .seal {
+    font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: .24em; font-size: 1rem;
+    background: var(--blood); color: var(--bone); border: 1px solid var(--blood);
+    padding: 16px 20px 14px; cursor: pointer; width: 100%;
+    transition: box-shadow .25s, transform .1s;
+  }
+  .seal:hover, .seal:focus-visible { box-shadow: 0 0 34px var(--blood-glow); outline: none; }
+  .seal:active { transform: translateY(1px); }
+  .done { display: flex; flex-direction: column; gap: 14px; }
+  .done h3 { font-family: var(--font-title); font-weight: 400; color: var(--blood); font-size: 1.3rem; margin: 0; text-align: center; line-height: 1.3; }
+  .done p { margin: 0; text-align: center; }
+  .done .msg {
+    white-space: pre-wrap; word-break: break-word; border: 1px dashed var(--line);
+    padding: 14px 16px; font-size: .95rem; background: rgba(233, 223, 198, .04); text-align: left;
+  }
+  .done .actions { display: flex; flex-direction: column; gap: 10px; }
+  .btn-ghost {
+    font-family: var(--font-label); text-transform: uppercase; letter-spacing: .2em; font-size: .85rem;
+    background: transparent; color: var(--bone); border: 1px solid var(--blood); padding: 13px 16px 11px; cursor: pointer;
+    text-align: center; text-decoration: none; display: block;
+    transition: background .2s, color .2s;
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible { background: var(--bone); color: var(--ink); outline: none; }
+  .btn-link {
+    font-family: var(--font-label); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem;
+    background: none; border: 0; color: var(--bone-dim); cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+  }
+
+  /* Billing block */
+  .billing { display: flex; flex-direction: column; align-items: center; gap: 16px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .rated { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; }
+  .rated b {
+    font-family: var(--font-label); font-weight: 600; font-size: 1.5rem; line-height: 1;
+    border: 2px solid var(--blood); color: var(--blood); padding: 6px 10px 4px;
+  }
+  .rated small { font-family: var(--font-label); text-transform: uppercase; letter-spacing: .14em; font-size: .62rem; line-height: 1.4; color: var(--bone-dim); max-width: 180px; }
+  .credits {
+    margin: 0; text-align: center; font-family: var(--font-label); text-transform: uppercase;
+    font-size: .64rem; letter-spacing: .09em; line-height: 1.7; color: var(--bone-dim); max-width: 46ch;
+    transform: scaleX(.86); transform-origin: center;
+  }
+  .credits b { color: var(--bone); font-weight: 600; }
+  .copyright { margin: 0; font-size: .74rem; color: var(--bone-dim); text-align: center; }
+
+  /* Sound toggle */
+  .sound {
+    position: fixed; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 45;
+    display: none; align-items: center; gap: 8px;
+    background: rgba(0, 0, 0, .85); color: var(--bone); border: 1px solid var(--blood);
+    padding: 9px 12px; cursor: pointer;
+    font-family: var(--font-label); text-transform: uppercase; letter-spacing: .16em; font-size: .68rem;
+    backdrop-filter: blur(6px);
+  }
+  .sound.show { display: inline-flex; }
+  .sound:hover, .sound:focus-visible { border-color: var(--bone); outline: none; }
+  .sound svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* Jump scare */
+  .scare {
+    position: fixed; inset: 0; z-index: 70; background: #000; pointer-events: none;
+    display: none; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .scare.on { display: flex; animation: scare-bg 1.15s linear forwards; }
+  .scare canvas { width: 100%; height: 100%; display: block; }
+  .scare.on canvas { animation: scare-face 1.15s cubic-bezier(.2, .9, .3, 1) forwards; }
+  @keyframes scare-bg {
+    0% { background: #7a0008; opacity: 1; } 5% { background: #000; }
+    90% { opacity: 1; } 100% { opacity: 0; }
+  }
+  @keyframes scare-face {
+    0% { transform: scale(.4) translate(0, 0); opacity: 0; }
+    4% { transform: scale(.75) translate(0, 0); opacity: 1; }
+    12% { transform: scale(1.1) translate(-12px, 7px); }
+    20% { transform: scale(1.12) translate(14px, -9px); }
+    28% { transform: scale(1.14) translate(-10px, -7px); }
+    36% { transform: scale(1.16) translate(12px, 10px); }
+    44% { transform: scale(1.18) translate(-14px, 5px); }
+    52% { transform: scale(1.2) translate(9px, -12px); }
+    60% { transform: scale(1.23) translate(-7px, 8px); }
+    68% { transform: scale(1.26) translate(10px, 4px); }
+    76% { transform: scale(1.3) translate(-6px, -5px); }
+    88% { transform: scale(1.38) translate(0, 0); opacity: 1; }
+    100% { transform: scale(1.6) translate(0, 0); opacity: 0; }
+  }
+
+  /* Iconic things on the side */
+  .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .icons { display: flex; justify-content: center; align-items: center; gap: 18px; margin: -8px 0; }
+  .icons svg { width: 34px; height: 34px; display: block; }
+  .icons .sm svg { width: 24px; height: 24px; }
+  .icons span { display: block; }
+  .side {
+    display: none; position: absolute; top: 24px; bottom: 24px; width: 72px;
+    flex-direction: column; justify-content: space-between; align-items: center;
+  }
+  .side.l { left: -112px; } .side.r { right: -112px; }
+  .side svg { width: 58px; height: 58px; display: block; filter: drop-shadow(0 0 14px rgba(179, 18, 27, .35)); }
+  .side span { display: block; animation: sway 6s ease-in-out infinite; transform-origin: 50% 20%; }
+  .side span:nth-child(2n) { animation-duration: 7.5s; animation-delay: -2s; }
+  .side span:nth-child(3n) { animation-duration: 5.2s; animation-delay: -1s; }
+  @keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+  @media (min-width: 800px) { .side { display: flex; } }
+  .splash .icons { margin: 0 0 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grain, .fog, .fog2, .title, .side span { animation: none; }
+  }
+  @media (max-width: 380px) {
+    .poster { padding-inline: 16px; }
+    .choices { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-pumpkin" viewBox="0 0 64 64">
+    <path d="M31 19c-1-6 2-11 7-12" fill="none" stroke="#a89e86" stroke-width="4" stroke-linecap="round"/>
+    <path d="M32 18c-7-6-20-3-22 11-2 13 5 25 22 25s24-12 22-25c-2-14-15-17-22-11z" fill="#e8641a"/>
+    <path d="M22 19c-5 8-5 24 0 33M42 19c5 8 5 24 0 33M32 18v36" fill="none" stroke="#b3410f" stroke-width="2" opacity=".8"/>
+    <path d="M20 35l6-8 4 8zM34 35l4-8 6 8z" fill="#000"/>
+    <path d="M17 42c4 7 26 7 30 0l-4 1-3-3-3 3-3-3-4 3-3-3-3 3-4-1z" fill="#000"/>
+  </symbol>
+  <symbol id="i-martini" viewBox="0 0 64 64">
+    <path d="M10 10h44L32 36z" fill="#000" stroke="#b3121b" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M16 15h32L32 33z" fill="#b3121b" opacity=".45"/>
+    <path d="M32 36v16M20 54h24" fill="none" stroke="#b3121b" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M38 8l6 10" stroke="#e9dfc6" stroke-width="1.5"/>
+    <circle cx="40" cy="22" r="3.5" fill="#b3121b"/>
+  </symbol>
+  <symbol id="i-shot" viewBox="0 0 64 64">
+    <path d="M20 14h24l-3 38H23z" fill="#000" stroke="#b3121b" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M23.5 30h17l-1.5 20h-14z" fill="#b3121b"/>
+    <path d="M18 12h28" stroke="#b3121b" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-potion" viewBox="0 0 64 64">
+    <rect x="25" y="5" width="14" height="6" rx="1" fill="#a89e86"/>
+    <path d="M27 11h10v9c8 3 13 10 13 18a18 18 0 01-36 0c0-8 5-15 13-18z" fill="#000" stroke="#b3121b" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M16 37a16 16 0 0032 0 20 20 0 00-32 0z" fill="#b3121b" opacity=".7"/>
+    <circle cx="26" cy="43" r="2" fill="#000"/><circle cx="36" cy="47" r="2.5" fill="#000"/><circle cx="33" cy="39" r="1.5" fill="#000"/>
+    <path d="M28 25l2-3 2 3-2 3z" fill="#e9dfc6"/>
+  </symbol>
+  <symbol id="i-cauldron" viewBox="0 0 64 64">
+    <path d="M12 26h40c0 15-8 26-20 26S12 41 12 26z" fill="#000" stroke="#b3121b" stroke-width="2.5"/>
+    <rect x="8" y="22" width="48" height="7" rx="3.5" fill="#b3121b"/>
+    <path d="M20 50l-4 6M44 50l4 6" stroke="#b3121b" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="24" cy="16" r="3" fill="#b3121b"/><circle cx="34" cy="10" r="2" fill="#b3121b"/><circle cx="40" cy="17" r="2.5" fill="#b3121b"/>
+  </symbol>
+  <symbol id="i-bat" viewBox="0 0 64 64">
+    <path d="M32 30c-4-8-12-12-26-8 6 2 8 6 7 10 6-2 10 0 12 6 2-4 5-6 7-6s5 2 7 6c2-6 6-8 12-6-1-4 1-8 7-10-14-4-22 0-26 8z" fill="#b3121b"/>
+    <path d="M29 24l-2-6 4 3h2l4-3-2 6z" fill="#b3121b"/>
+  </symbol>
+  <symbol id="i-skull" viewBox="0 0 64 64">
+    <path d="M32 8c-13 0-21 9-21 20 0 6 3 11 7 14v8h28v-8c4-3 7-8 7-14 0-11-8-20-21-20z" fill="#e9dfc6"/>
+    <circle cx="24" cy="29" r="5.5" fill="#000"/><circle cx="40" cy="29" r="5.5" fill="#000"/>
+    <path d="M32 35l-3 6h6z" fill="#000"/>
+    <path d="M24 44v6M29 44v6M35 44v6M40 44v6" stroke="#000" stroke-width="2"/>
+    <circle cx="25" cy="28" r="1.5" fill="#b3121b"/><circle cx="41" cy="28" r="1.5" fill="#b3121b"/>
+  </symbol>
+  <symbol id="i-candle" viewBox="0 0 64 64">
+    <path d="M32 6c-5 7-7 11-7 15a7 7 0 0014 0c0-4-2-8-7-15z" fill="#e8641a"/>
+    <path d="M32 14c-2 3-3 5-3 7a3 3 0 006 0c0-2-1-4-3-7z" fill="#e9dfc6"/>
+    <rect x="24" y="26" width="16" height="28" rx="2" fill="#b3121b"/>
+    <path d="M26 26c0 4 2 6 2 10M38 28c-2 3-2 5-1 8" stroke="#e9dfc6" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    <rect x="18" y="54" width="28" height="4" rx="2" fill="#a89e86"/>
+  </symbol>
+  <symbol id="i-hat" viewBox="0 0 64 64">
+    <path d="M26 40c2-14 6-24 18-34-2 12-2 22 4 34z" fill="#000" stroke="#b3121b" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M8 46c10-6 38-6 48 0-10 6-38 6-48 0z" fill="#000" stroke="#b3121b" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M27 36h20" stroke="#b3121b" stroke-width="4"/>
+  </symbol>
+</svg>
+
+<div class="splash" id="splash">
+  <p class="eyebrow">A Kyndra · Rania · Kiarra production</p>
+  <div class="icons" aria-hidden="true"><span><svg><use href="#i-pumpkin"/></svg></span><span><svg><use href="#i-martini"/></svg></span><span><svg><use href="#i-pumpkin"/></svg></span></div>
+  <h1 class="title"><span>Witches</span><span class="amp">&amp;</span><span>Bitches</span></h1>
+  <p class="hint">Turn your sound on. Not for the faint of heart.</p>
+  <button class="enter" id="enter" type="button">Enter if you dare</button>
+  <button class="quiet" id="enter-quiet" type="button">Enter in silence</button>
+</div>
+
+<main class="poster">
+  <div class="side l" aria-hidden="true"><span><svg><use href="#i-pumpkin"/></svg></span><span><svg><use href="#i-martini"/></svg></span><span><svg><use href="#i-bat"/></svg></span><span><svg><use href="#i-potion"/></svg></span><span><svg><use href="#i-skull"/></svg></span><span><svg><use href="#i-shot"/></svg></span><span><svg><use href="#i-candle"/></svg></span><span><svg><use href="#i-pumpkin"/></svg></span></div>
+  <div class="side r" aria-hidden="true"><span><svg><use href="#i-shot"/></svg></span><span><svg><use href="#i-pumpkin"/></svg></span><span><svg><use href="#i-cauldron"/></svg></span><span><svg><use href="#i-bat"/></svg></span><span><svg><use href="#i-martini"/></svg></span><span><svg><use href="#i-hat"/></svg></span><span><svg><use href="#i-pumpkin"/></svg></span><span><svg><use href="#i-candle"/></svg></span></div>
+  <header class="masthead">
+    <p class="eyebrow">Kyndra · Rania · Kiarra present</p>
+    <p class="title" aria-hidden="true"><span>Witches</span><span class="amp">&amp;</span><span>Bitches</span></p>
+    <p class="tagline">This Halloween, the coven gathers.<br>Three witches. One house. <em>No survivors</em> of the hangover.</p>
+  </header>
+
+  <div class="scene" aria-hidden="true">
+    <canvas id="scene"></canvas>
+    <div class="fog2"></div>
+    <div class="fog"></div>
+  </div>
+
+  <div class="icons" aria-hidden="true"><span><svg><use href="#i-martini"/></svg></span><span><svg><use href="#i-pumpkin"/></svg></span><span><svg><use href="#i-shot"/></svg></span><span><svg><use href="#i-pumpkin"/></svg></span><span><svg><use href="#i-martini"/></svg></span></div>
+
+  <section class="release" aria-label="When and where">
+    <p class="eyebrow">Opening night</p>
+    <p class="date">31<span>.</span>10<span>.</span>2026</p>
+    <p class="time">Doors open 20:30</p>
+    <p class="venue">Beverestraat 116, Oudenaarde<small>Follow the screams.</small></p>
+  </section>
+
+  <ul class="rules" aria-label="House rules">
+    <li><b>I</b><span>Costumes mandatory<small>No costume, no entry. The coven has standards.</small></span></li>
+    <li><b>II</b><span>BYOB<small>Bring your own bottle. Potions welcome.</small></span></li>
+    <li><b>III</b><span>Best costume gets cursed<small>With glory. And probably a shot.</small></span></li>
+  </ul>
+
+  <div class="icons sm" aria-hidden="true"><span><svg><use href="#i-bat"/></svg></span><span><svg><use href="#i-potion"/></svg></span><span><svg><use href="#i-cauldron"/></svg></span><span><svg><use href="#i-skull"/></svg></span><span><svg><use href="#i-bat"/></svg></span></div>
+
+  <section class="rsvp" id="rsvp" aria-labelledby="rsvp-title">
+    <h2 id="rsvp-title">RSVP before <em>21.10</em></h2>
+    <p class="lede">Answer before the deadline, or be cursed for a year.</p>
+
+    <form id="rsvp-form" novalidate>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="Who dares?" maxlength="60">
+      </div>
+      <fieldset>
+        <legend>Your fate</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="fate" id="fate-yes" value="yes"><span>I'll be there<small>summon me</small></span></label>
+          <label class="choice"><input type="radio" name="fate" id="fate-no" value="no"><span>Too scared<small>I'll haunt you another time</small></span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="costume">My costume will be... <span style="letter-spacing:0;text-transform:none">(optional)</span></label>
+        <textarea id="costume" name="costume" placeholder="Keep it secret, or spoil it here." maxlength="200"></textarea>
+      </div>
+      <p class="error" id="error" aria-live="polite"></p>
+      <button class="seal" type="submit">Seal your fate</button>
+    </form>
+
+    <div class="done" id="done" hidden>
+      <h3 id="done-title">Your fate is sealed.</h3>
+      <p id="done-text">Send this message to Kyndra, Rania or Kiarra so the coven can count the guests.</p>
+      <div class="msg" id="done-msg"></div>
+      <div class="actions">
+        <a class="btn-ghost" id="wa-link" href="#" target="_blank" rel="noopener" hidden>Send via WhatsApp</a>
+        <button class="btn-ghost" id="copy" type="button">Copy message</button>
+        <button class="btn-link" id="again" type="button">Change my answer</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="icons sm" aria-hidden="true"><span><svg><use href="#i-pumpkin"/></svg></span><span><svg><use href="#i-candle"/></svg></span><span><svg><use href="#i-hat"/></svg></span><span><svg><use href="#i-candle"/></svg></span><span><svg><use href="#i-pumpkin"/></svg></span></div>
+
+  <footer class="billing">
+    <div class="rated"><b>R</b><small>Restricted. Ridiculous costumes required. Hangovers guaranteed.</small></div>
+    <p class="credits">
+      <b>Kyndra · Rania · Kiarra</b> present a night of terror <b>"Witches &amp; Bitches"</b>
+      starring <b>you</b> and everyone you dare to bring &nbsp;·&nbsp; costumes by <b>yourself</b>
+      &nbsp;·&nbsp; drinks by <b>you</b> (BYOB) &nbsp;·&nbsp; doors open <b>20:30</b> &nbsp;·&nbsp; location <b>Beverestraat 116, Oudenaarde</b>
+      &nbsp;·&nbsp; RSVP before <b>21.10</b> or be cursed &nbsp;·&nbsp; soundtrack by <b>the house itself</b>
+    </p>
+    <p class="copyright">Only in Oudenaarde. 31 October 2026.</p>
+  </footer>
+</main>
+
+<div class="scare" id="scare" aria-hidden="true"><canvas id="scare-face"></canvas></div>
+
+<button class="sound" id="sound" type="button" aria-pressed="true">
+  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3v10l-4-3H2z"/><path id="sound-wave" d="M11 5.5a3 3 0 010 5M12.5 3.5a5.5 5.5 0 010 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+  <span id="sound-label">Sound on</span>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  // Host WhatsApp number, international format, digits only.
+  var HOST_WHATSAPP = "32493701460";
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* =========================================================
+     SOUNDTRACK: an original score generated in the page.
+     Drone with a tritone, an out-of-tune music box waltz with
+     a ghost voice, a heartbeat, whispers, creaking doors,
+     cackling through an old gramophone, thunder when lightning strikes.
+     ========================================================= */
+  var Score = (function () {
+    var ctx = null, master, bus, reverb, wet, noiseBuf;
+    var timer = null, muted = false;
+    var BEAT = 0.62;
+    var MELODY = [
+      [76, 1], [79, 1], [83, 1],
+      [81, 2], [79, 1],
+      [78, 1], [76, 1], [75, 1],
+      [76, 3],
+      [76, 1], [79, 1], [83, 1],
+      [84, 2], [83, 1],
+      [81, 1], [79, 1], [78, 1],
+      [75, 3],
+      [0, 3]
+    ];
+    var noteIdx = 0, nextNoteTime = 0, nextBeatTime = 0;
+
+    function makeNoise(seconds) {
+      var rate = ctx.sampleRate, len = Math.floor(rate * seconds);
+      var buf = ctx.createBuffer(1, len, rate), d = buf.getChannelData(0);
+      for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      return buf;
+    }
+    function makeImpulse(seconds, decay) {
+      var rate = ctx.sampleRate, len = Math.floor(rate * seconds);
+      var buf = ctx.createBuffer(2, len, rate);
+      for (var c = 0; c < 2; c++) {
+        var d = buf.getChannelData(c);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
+      }
+      return buf;
+    }
+    function distCurve(k) {
+      var n = 1024, c = new Float32Array(n);
+      for (var i = 0; i < n; i++) { var x = i * 2 / n - 1; c[i] = (1 + k) * x / (1 + k * Math.abs(x)); }
+      return c;
+    }
+
+    function drone() {
+      var now = ctx.currentTime;
+      var lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 170; lp.Q.value = 5;
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.exponentialRampToValueAtTime(0.16, now + 5);
+      // E1 cluster plus A#1: the tritone, the devil's interval.
+      [[41.2, 'sawtooth'], [41.7, 'sawtooth'], [82.4, 'triangle'], [58.3, 'triangle']].forEach(function (p) {
+        var o = ctx.createOscillator();
+        o.type = p[1]; o.frequency.value = p[0];
+        o.connect(lp); o.start(now);
+      });
+      lp.connect(g); g.connect(bus);
+      var lfo = ctx.createOscillator(); lfo.frequency.value = 0.07;
+      var lg = ctx.createGain(); lg.gain.value = 80;
+      lfo.connect(lg); lg.connect(lp.frequency); lfo.start(now);
+    }
+
+    function pluck(midi, t, vel, wobble) {
+      var spread = wobble || 0.016;
+      var detune = 1 + (Math.random() * spread - spread / 2);
+      var f = 440 * Math.pow(2, (midi - 69) / 12) * detune;
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vel, t + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 1.7);
+      var o1 = ctx.createOscillator(); o1.type = 'sine'; o1.frequency.value = f;
+      var o2 = ctx.createOscillator(); o2.type = 'sine'; o2.frequency.value = f * 4;
+      var g2 = ctx.createGain();
+      g2.gain.setValueAtTime(0.22, t);
+      g2.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
+      var o3 = ctx.createOscillator(); o3.type = 'sine'; o3.frequency.value = f * 2.76;
+      var g3 = ctx.createGain();
+      g3.gain.setValueAtTime(0.08, t);
+      g3.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+      o2.connect(g2); g2.connect(g);
+      o3.connect(g3); g3.connect(g);
+      o1.connect(g); g.connect(bus);
+      o1.start(t); o1.stop(t + 1.8);
+      o2.start(t); o2.stop(t + 0.5);
+      o3.start(t); o3.stop(t + 0.35);
+    }
+
+    function thump(t) {
+      var o = ctx.createOscillator(); o.type = 'sine';
+      o.frequency.setValueAtTime(72, t);
+      o.frequency.exponentialRampToValueAtTime(34, t + 0.2);
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.42, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.24);
+      o.connect(g); g.connect(master);
+      o.start(t); o.stop(t + 0.26);
+    }
+
+    function whisper() {
+      setTimeout(whisper, 8000 + Math.random() * 9000);
+      if (!ctx) return;
+      var t = ctx.currentTime + 0.1;
+      var src = ctx.createBufferSource(); src.buffer = noiseBuf;
+      var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 14;
+      bp.frequency.setValueAtTime(380 + Math.random() * 500, t);
+      bp.frequency.exponentialRampToValueAtTime(1400 + Math.random() * 1600, t + 2.2);
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.07, t + 1.1);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 2.4);
+      src.connect(bp); bp.connect(g); g.connect(reverb);
+      src.start(t); src.stop(t + 2.5);
+    }
+
+    // A witch's cackle: short voiced bursts through two vocal formants,
+    // pitch falling through the laugh, panned somewhere in the dark.
+    function laugh(t, deep, loud, n) {
+      var base = deep ? 115 + Math.random() * 40 : 320 + Math.random() * 130;
+      var out = ctx.createGain(); out.gain.value = (deep ? 0.55 : 0.4) * loud;
+      var f1 = ctx.createBiquadFilter(); f1.type = 'bandpass'; f1.frequency.value = deep ? 520 : 760; f1.Q.value = 2.5;
+      var f2 = ctx.createBiquadFilter(); f2.type = 'bandpass'; f2.frequency.value = deep ? 1300 : 1900; f2.Q.value = 3;
+      f1.connect(out); f2.connect(out);
+      if (ctx.createStereoPanner) {
+        var pan = ctx.createStereoPanner(); pan.pan.value = Math.random() * 1.6 - 0.8;
+        out.connect(pan); pan.connect(bus);
+      } else { out.connect(bus); }
+      var dur = deep ? 0.22 : 0.13, gap = deep ? 0.3 : 0.17;
+      for (var i = 0; i < n; i++) {
+        var ts = t + i * gap * (1 + Math.random() * 0.25);
+        var f = base * (1 + 0.5 * Math.exp(-i * 0.35)) * (0.95 + Math.random() * 0.1) * Math.pow(0.97, i);
+        var o = ctx.createOscillator(); o.type = 'sawtooth';
+        o.frequency.setValueAtTime(f * 1.15, ts);
+        o.frequency.exponentialRampToValueAtTime(f * 0.85, ts + dur);
+        var vib = ctx.createOscillator(); vib.frequency.value = 26;
+        var vg = ctx.createGain(); vg.gain.value = f * 0.06;
+        vib.connect(vg); vg.connect(o.frequency);
+        var g = ctx.createGain();
+        g.gain.setValueAtTime(0.0001, ts);
+        g.gain.exponentialRampToValueAtTime(1, ts + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, ts + dur);
+        var ns = ctx.createBufferSource(); ns.buffer = noiseBuf;
+        var ng = ctx.createGain();
+        ng.gain.setValueAtTime(0.0001, ts);
+        ng.gain.exponentialRampToValueAtTime(0.4, ts + 0.02);
+        ng.gain.exponentialRampToValueAtTime(0.0001, ts + dur);
+        o.connect(g); g.connect(f1); g.connect(f2);
+        ns.connect(ng); ng.connect(f1); ng.connect(f2);
+        o.start(ts); o.stop(ts + dur + 0.05);
+        vib.start(ts); vib.stop(ts + dur + 0.05);
+        ns.start(ts); ns.stop(ts + dur + 0.05);
+      }
+    }
+    function cackle() {
+      setTimeout(cackle, 14000 + Math.random() * 16000);
+      if (!ctx) return;
+      laugh(ctx.currentTime + 0.05, Math.random() < 0.35, 1, 6 + Math.floor(Math.random() * 5));
+    }
+
+    // A door creaking open somewhere in the house.
+    function creak() {
+      setTimeout(creak, 12000 + Math.random() * 14000);
+      if (!ctx) return;
+      var t = ctx.currentTime + 0.05;
+      var o = ctx.createOscillator(); o.type = 'sawtooth';
+      var f0 = 90 + Math.random() * 120;
+      o.frequency.setValueAtTime(f0, t);
+      for (var i = 1; i <= 12; i++) {
+        o.frequency.linearRampToValueAtTime(f0 * (1 + (Math.random() * 0.5 - 0.1) * Math.min(1, i / 12)), t + i * 0.11);
+      }
+      var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = f0 * 6; bp.Q.value = 3;
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(0.13, t + 0.4);
+      g.gain.setValueAtTime(0.13, t + 1.1);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 1.5);
+      o.connect(bp); bp.connect(g); g.connect(bus);
+      o.start(t); o.stop(t + 1.6);
+    }
+
+    function thunder() {
+      if (!ctx || muted) return;
+      var t = ctx.currentTime + 0.25;
+      var src = ctx.createBufferSource(); src.buffer = noiseBuf;
+      var lp = ctx.createBiquadFilter(); lp.type = 'lowpass';
+      lp.frequency.setValueAtTime(900, t);
+      lp.frequency.exponentialRampToValueAtTime(110, t + 2.6);
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.75, t + 0.09);
+      g.gain.exponentialRampToValueAtTime(0.28, t + 0.7);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 3.2);
+      src.connect(lp); lp.connect(g); g.connect(bus);
+      src.start(t); src.stop(t + 3.3);
+    }
+
+    // Everything drops to a whisper (the setup), or comes back (the payoff).
+    function hush(on) {
+      if (!ctx) return;
+      var now = ctx.currentTime;
+      bus.gain.cancelScheduledValues(now);
+      bus.gain.setValueAtTime(bus.gain.value, now);
+      bus.gain.linearRampToValueAtTime(on ? 0.04 : 1, now + (on ? 0.35 : 1.2));
+    }
+
+    // The scream: a distorted cluster tearing upward, a blast of noise,
+    // a sub-bass stinger, and then it laughs at you.
+    function scream() {
+      if (!ctx) return;
+      var t = ctx.currentTime;
+      var dist = ctx.createWaveShaper(); dist.curve = distCurve(70);
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.95, t + 0.03);
+      g.gain.setValueAtTime(0.95, t + 0.6);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 1.5);
+      dist.connect(g); g.connect(master);
+      [1, 1.5, 2.02, 3.1].forEach(function (m) {
+        var o = ctx.createOscillator(); o.type = 'sawtooth';
+        o.frequency.setValueAtTime(380 * m, t);
+        o.frequency.exponentialRampToValueAtTime(920 * m, t + 0.25);
+        o.frequency.exponentialRampToValueAtTime(610 * m, t + 1.3);
+        var vib = ctx.createOscillator(); vib.frequency.value = 9 + Math.random() * 5;
+        var vg = ctx.createGain(); vg.gain.value = 24 * m;
+        vib.connect(vg); vg.connect(o.frequency);
+        o.connect(dist);
+        o.start(t); o.stop(t + 1.6); vib.start(t); vib.stop(t + 1.6);
+      });
+      var ns = ctx.createBufferSource(); ns.buffer = noiseBuf;
+      var hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1200;
+      var ng = ctx.createGain();
+      ng.gain.setValueAtTime(0.0001, t);
+      ng.gain.exponentialRampToValueAtTime(0.8, t + 0.02);
+      ng.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+      ns.connect(hp); hp.connect(ng); ng.connect(dist);
+      ns.start(t); ns.stop(t + 1.4);
+      var sub = ctx.createOscillator(); sub.type = 'square';
+      sub.frequency.setValueAtTime(55, t);
+      sub.frequency.exponentialRampToValueAtTime(28, t + 1);
+      var sg = ctx.createGain();
+      sg.gain.setValueAtTime(0.0001, t);
+      sg.gain.exponentialRampToValueAtTime(0.6, t + 0.02);
+      sg.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+      sub.connect(sg); sg.connect(master);
+      sub.start(t); sub.stop(t + 1.4);
+      bus.gain.cancelScheduledValues(t);
+      bus.gain.setValueAtTime(bus.gain.value, t);
+      bus.gain.linearRampToValueAtTime(1, t + 0.3);
+      laugh(t + 0.35, true, 2.4, 10);
+    }
+
+    function tick() {
+      var horizon = ctx.currentTime + 0.45;
+      while (nextNoteTime < horizon) {
+        var step = MELODY[noteIdx];
+        if (step[0]) {
+          pluck(step[0], nextNoteTime, 0.5);
+          // A ghost voice an octave down, late and badly out of tune.
+          pluck(step[0] - 12, nextNoteTime + 0.09, 0.2, 0.05);
+        }
+        nextNoteTime += step[1] * BEAT;
+        noteIdx = (noteIdx + 1) % MELODY.length;
+      }
+      while (nextBeatTime < horizon) {
+        thump(nextBeatTime);
+        thump(nextBeatTime + 0.3);
+        nextBeatTime += 1.5;
+      }
+    }
+
+    function start() {
+      if (ctx) { if (ctx.state === 'suspended') ctx.resume(); return true; }
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      ctx = new AC();
+      master = ctx.createGain(); master.gain.value = 0.9;
+      var comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -14; comp.ratio.value = 6; comp.attack.value = 0.004; comp.release.value = 0.25;
+      master.connect(comp); comp.connect(ctx.destination);
+      bus = ctx.createGain(); bus.gain.value = 1; bus.connect(master);
+      reverb = ctx.createConvolver(); reverb.buffer = makeImpulse(3.2, 2.4);
+      wet = ctx.createGain(); wet.gain.value = 0.45;
+      bus.connect(reverb); reverb.connect(wet); wet.connect(master);
+      noiseBuf = makeNoise(3.5);
+      drone();
+      nextNoteTime = ctx.currentTime + 2.2;
+      nextBeatTime = ctx.currentTime + 0.4;
+      timer = setInterval(tick, 110);
+      setTimeout(whisper, 6000);
+      setTimeout(cackle, 7000 + Math.random() * 4000);
+      setTimeout(creak, 15000);
+      document.addEventListener('visibilitychange', function () {
+        if (!ctx) return;
+        if (document.hidden) ctx.suspend(); else if (!muted) ctx.resume();
+      });
+      return true;
+    }
+
+    function setMuted(m) {
+      muted = m;
+      if (!ctx) return;
+      var now = ctx.currentTime;
+      master.gain.cancelScheduledValues(now);
+      master.gain.setValueAtTime(master.gain.value, now);
+      master.gain.linearRampToValueAtTime(m ? 0.0001 : 0.9, now + 0.5);
+    }
+
+    return { start: start, setMuted: setMuted, thunder: thunder, hush: hush, scream: scream, isRunning: function () { return !!ctx; } };
+  })();
+
+  /* =========================================================
+     SCENE: moon, stars, bats, three hats on a hill, lightning.
+     ========================================================= */
+  var Scene = (function () {
+    var canvas = document.getElementById('scene');
+    var cx = canvas.getContext('2d');
+    var W = 0, H = 0, dpr = 1;
+    var stars = [], bats = [];
+    var flash = 0, bolt = null, nextFlash = 0, last = 0;
+
+    function rnd(a, b) { return a + Math.random() * (b - a); }
+
+    function resize() {
+      var r = canvas.getBoundingClientRect();
+      if (!r.width) return;
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      W = r.width; H = r.height;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function init() {
+      resize();
+      stars = [];
+      for (var i = 0; i < 80; i++) stars.push({ x: Math.random(), y: Math.random() * 0.62, r: rnd(0.4, 1.4), p: Math.random() * 6.28, s: rnd(0.4, 1.6) });
+      bats = [];
+      for (var j = 0; j < 6; j++) bats.push(newBat(true));
+      nextFlash = performance.now() + rnd(5000, 9000);
+    }
+
+    function newBat(anywhere) {
+      var dir = Math.random() < 0.5 ? 1 : -1;
+      return {
+        x: anywhere ? Math.random() : (dir > 0 ? -0.1 : 1.1),
+        y: rnd(0.08, 0.55),
+        vx: dir * rnd(0.05, 0.11),
+        vy: rnd(-0.015, 0.015),
+        flap: Math.random() * 6.28,
+        fs: rnd(7, 11),
+        s: rnd(0.75, 1.5)
+      };
+    }
+
+    function drawMoon() {
+      var mx = W * 0.72, my = H * 0.3, r = Math.min(W, H) * 0.15;
+      var glow = cx.createRadialGradient(mx, my, r * 0.9, mx, my, r * 3.2);
+      glow.addColorStop(0, 'rgba(233,223,198,0.28)');
+      glow.addColorStop(0.5, 'rgba(233,223,198,0.07)');
+      glow.addColorStop(1, 'rgba(233,223,198,0)');
+      cx.fillStyle = glow;
+      cx.fillRect(mx - r * 3.2, my - r * 3.2, r * 6.4, r * 6.4);
+      var disc = cx.createRadialGradient(mx - r * 0.3, my - r * 0.3, r * 0.1, mx, my, r);
+      disc.addColorStop(0, '#f3ecd8');
+      disc.addColorStop(1, '#cfc3a3');
+      cx.fillStyle = disc;
+      cx.beginPath(); cx.arc(mx, my, r, 0, Math.PI * 2); cx.fill();
+      cx.fillStyle = 'rgba(120,105,80,0.22)';
+      [[-0.35, -0.2, 0.18], [0.25, 0.1, 0.14], [0.05, 0.45, 0.1], [-0.1, 0.1, 0.07], [0.4, -0.4, 0.08]].forEach(function (c) {
+        cx.beginPath(); cx.arc(mx + c[0] * r, my + c[1] * r, c[2] * r, 0, Math.PI * 2); cx.fill();
+      });
+    }
+
+    function drawStars(t) {
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var a = 0.35 + 0.45 * Math.abs(Math.sin(t * 0.001 * s.s + s.p));
+        cx.fillStyle = 'rgba(233,223,198,' + a.toFixed(3) + ')';
+        cx.beginPath(); cx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2); cx.fill();
+      }
+    }
+
+    function drawBat(x, y, s, a) {
+      cx.save();
+      cx.translate(x, y); cx.scale(s, s);
+      cx.fillStyle = '#040308';
+      cx.beginPath();
+      cx.moveTo(0, 0);
+      cx.quadraticCurveTo(6, -4 - a * 6, 14, -2 - a * 8);
+      cx.quadraticCurveTo(10, 2 - a * 4, 8, 3 - a * 2);
+      cx.quadraticCurveTo(5, 1 - a * 2, 0, 4);
+      cx.quadraticCurveTo(-5, 1 - a * 2, -8, 3 - a * 2);
+      cx.quadraticCurveTo(-10, 2 - a * 4, -14, -2 - a * 8);
+      cx.quadraticCurveTo(-6, -4 - a * 6, 0, 0);
+      cx.fill();
+      cx.beginPath();
+      cx.moveTo(-2.2, -0.5); cx.lineTo(-3.2, -5); cx.lineTo(-0.6, -2.4);
+      cx.lineTo(0.6, -2.4); cx.lineTo(3.2, -5); cx.lineTo(2.2, -0.5);
+      cx.fill();
+      cx.restore();
+    }
+
+    function hat(x, baseY, w, h, lean) {
+      cx.beginPath();
+      cx.moveTo(x - w * 0.45, baseY);
+      cx.quadraticCurveTo(x - w * 0.08, baseY - h * 0.55, x + lean * w, baseY - h);
+      cx.quadraticCurveTo(x + w * 0.22, baseY - h * 0.5, x + w * 0.45, baseY);
+      cx.closePath(); cx.fill();
+      cx.beginPath();
+      cx.ellipse(x, baseY, w * 0.85, w * 0.17, 0, 0, Math.PI * 2);
+      cx.fill();
+    }
+
+    function drawHill() {
+      var haze = cx.createLinearGradient(0, H * 0.45, 0, H * 0.9);
+      haze.addColorStop(0, 'rgba(150,125,170,0)');
+      haze.addColorStop(0.7, 'rgba(150,125,170,0.22)');
+      haze.addColorStop(1, 'rgba(170,150,190,0.42)');
+      cx.fillStyle = haze;
+      cx.fillRect(0, H * 0.45, W, H * 0.45);
+      cx.fillStyle = '#05040a';
+      cx.beginPath();
+      cx.moveTo(0, H);
+      cx.lineTo(0, H * 0.86);
+      cx.quadraticCurveTo(W * 0.28, H * 0.72, W * 0.55, H * 0.8);
+      cx.quadraticCurveTo(W * 0.8, H * 0.88, W, H * 0.78);
+      cx.lineTo(W, H);
+      cx.closePath(); cx.fill();
+      var u = Math.min(W, H);
+      hat(W * 0.3, H * 0.785, u * 0.17, u * 0.2, 0.35);
+      hat(W * 0.5, H * 0.797, u * 0.2, u * 0.25, -0.3);
+      hat(W * 0.69, H * 0.838, u * 0.15, u * 0.17, 0.25);
+    }
+
+    function makeBolt() {
+      var pts = [], x = W * rnd(0.12, 0.55), y = 0;
+      pts.push([x, y]);
+      while (y < H * 0.75) {
+        y += rnd(H * 0.05, H * 0.11);
+        x += rnd(-W * 0.07, W * 0.07);
+        pts.push([x, y]);
+      }
+      return pts;
+    }
+
+    function drawBolt() {
+      if (!bolt || flash < 0.15) return;
+      cx.save();
+      cx.strokeStyle = 'rgba(240,236,255,' + Math.min(1, flash * 1.3).toFixed(3) + ')';
+      cx.lineWidth = 2; cx.lineJoin = 'round';
+      cx.shadowColor = 'rgba(200,190,255,0.9)'; cx.shadowBlur = 16;
+      cx.beginPath();
+      cx.moveTo(bolt[0][0], bolt[0][1]);
+      for (var i = 1; i < bolt.length; i++) cx.lineTo(bolt[i][0], bolt[i][1]);
+      cx.stroke();
+      cx.restore();
+    }
+
+    function frame(t) {
+      if (!W) resize();
+      var dt = last ? Math.min(0.05, (t - last) / 1000) : 0.016;
+      last = t;
+      cx.clearRect(0, 0, W, H);
+      drawStars(t);
+      drawMoon();
+      if (!reduceMotion) {
+        for (var i = 0; i < bats.length; i++) {
+          var b = bats[i];
+          b.x += b.vx * dt; b.y += b.vy * dt + Math.sin(t * 0.002 + b.flap) * 0.0006;
+          b.flap += b.fs * dt;
+          if (b.x < -0.15 || b.x > 1.15) bats[i] = newBat(false);
+        }
+      }
+      for (var k = 0; k < bats.length; k++) {
+        var bb = bats[k];
+        drawBat(bb.x * W, bb.y * H, bb.s * Math.min(W, H) / 220, Math.sin(bb.flap));
+      }
+      drawHill();
+      if (!reduceMotion) {
+        if (t > nextFlash) {
+          flash = 1; bolt = makeBolt();
+          nextFlash = t + rnd(11000, 24000);
+          Score.thunder();
+        }
+        if (flash > 0.01) {
+          var wobble = Math.random() < 0.15 ? 0.5 : 1;
+          cx.fillStyle = 'rgba(225,218,255,' + (flash * 0.5 * wobble).toFixed(3) + ')';
+          cx.fillRect(0, 0, W, H);
+          drawBolt();
+          flash *= 0.82;
+        }
+        requestAnimationFrame(frame);
+      }
+    }
+
+    function run() {
+      init();
+      window.addEventListener('resize', function () { resize(); if (reduceMotion) frame(performance.now()); });
+      requestAnimationFrame(frame);
+    }
+    return { run: run };
+  })();
+
+  /* =========================================================
+     SPLASH + SOUND TOGGLE
+     ========================================================= */
+  var splash = document.getElementById('splash');
+  var soundBtn = document.getElementById('sound');
+  var soundLabel = document.getElementById('sound-label');
+  var soundWave = document.getElementById('sound-wave');
+  var soundOn = false;
+
+  function setSound(on) {
+    soundOn = on;
+    Score.setMuted(!on);
+    soundBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    soundLabel.textContent = on ? 'Sound on' : 'Sound off';
+    soundWave.style.opacity = on ? '1' : '0.25';
+  }
+
+  function enter(withSound) {
+    if (withSound) {
+      var ok = Score.start();
+      setSound(ok);
+    } else {
+      setSound(false);
+    }
+    soundBtn.classList.add('show');
+    splash.classList.add('gone');
+  }
+
+  document.getElementById('enter').addEventListener('click', function () { enter(true); });
+  document.getElementById('enter-quiet').addEventListener('click', function () { enter(false); });
+  soundBtn.addEventListener('click', function () {
+    if (!Score.isRunning()) { var ok = Score.start(); if (!ok) return; setSound(true); return; }
+    setSound(!soundOn);
+  });
+
+  /* =========================================================
+     JUMP SCARE: fires once, on the guest's first choice.
+     The music dies for a second, then the face comes for them.
+     ========================================================= */
+  var Scare = (function () {
+    var el = document.getElementById('scare');
+    var cv = document.getElementById('scare-face');
+    var c = cv.getContext('2d');
+    var fired = false;
+
+    function draw() {
+      var W = window.innerWidth, H = window.innerHeight;
+      var d = Math.min(2, window.devicePixelRatio || 1);
+      cv.width = Math.round(W * d); cv.height = Math.round(H * d);
+      c.setTransform(d, 0, 0, d, 0, 0);
+      var u = Math.min(W, H), cx = W / 2, cy = H * 0.5;
+      var rx = u * 0.4, ry = u * 0.58;
+      var i;
+      c.fillStyle = '#000'; c.fillRect(0, 0, W, H);
+
+      // Skin, rotting toward the edges.
+      var skin = c.createRadialGradient(cx - rx * 0.2, cy - ry * 0.3, u * 0.05, cx, cy, ry);
+      skin.addColorStop(0, '#e6dfcf'); skin.addColorStop(0.72, '#b5aa94'); skin.addColorStop(1, '#3d3630');
+      c.fillStyle = skin;
+      c.beginPath(); c.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); c.fill();
+      for (i = 0; i < 500; i++) {
+        var a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random());
+        c.fillStyle = 'rgba(70,40,45,' + (Math.random() * 0.4).toFixed(2) + ')';
+        c.beginPath(); c.arc(cx + Math.cos(a) * r * rx, cy + Math.sin(a) * r * ry, Math.random() * u * 0.012, 0, Math.PI * 2); c.fill();
+      }
+
+      // Hollow eyes with a red glint.
+      function socket(ex, ey, sx, sy, tilt) {
+        var g = c.createRadialGradient(ex, ey, sx * 0.4, ex, ey, sx * 2);
+        g.addColorStop(0, 'rgba(35,15,25,0.95)'); g.addColorStop(1, 'rgba(35,15,25,0)');
+        c.fillStyle = g;
+        c.beginPath(); c.ellipse(ex, ey, sx * 2, sy * 1.7, tilt, 0, Math.PI * 2); c.fill();
+        c.fillStyle = '#000';
+        c.beginPath(); c.ellipse(ex, ey, sx, sy, tilt, 0, Math.PI * 2); c.fill();
+        c.fillStyle = '#b3121b';
+        c.beginPath(); c.arc(ex + sx * 0.25, ey + sy * 0.12, sx * 0.13, 0, Math.PI * 2); c.fill();
+      }
+      socket(cx - rx * 0.42, cy - ry * 0.22, u * 0.085, u * 0.12, -0.25);
+      socket(cx + rx * 0.4, cy - ry * 0.2, u * 0.1, u * 0.145, 0.3);
+
+      // Nose: two slits.
+      c.fillStyle = '#1a0f12';
+      c.beginPath(); c.ellipse(cx - u * 0.022, cy + ry * 0.12, u * 0.012, u * 0.03, 0.3, 0, Math.PI * 2); c.fill();
+      c.beginPath(); c.ellipse(cx + u * 0.025, cy + ry * 0.12, u * 0.012, u * 0.03, -0.3, 0, Math.PI * 2); c.fill();
+
+      // Mouth: wide open, too many teeth.
+      var mx = cx, my = cy + ry * 0.5, mw = rx * 0.72, mh = ry * 0.34;
+      c.fillStyle = '#050205';
+      c.beginPath(); c.ellipse(mx, my, mw, mh, 0, 0, Math.PI * 2); c.fill();
+      var teeth = 11;
+      for (i = 0; i < teeth; i++) {
+        var tx = mx - mw + (i + 0.5) * (2 * mw / teeth);
+        var edge = mh * Math.sqrt(Math.max(0, 1 - Math.pow((tx - mx) / mw, 2)));
+        var tw = mw / teeth * 0.5;
+        var th1 = mh * (0.35 + Math.random() * 0.4), th2 = mh * (0.3 + Math.random() * 0.35);
+        c.fillStyle = '#d6cdb8';
+        c.beginPath(); c.moveTo(tx - tw, my - edge); c.lineTo(tx + tw, my - edge); c.lineTo(tx + (Math.random() - 0.5) * tw, my - edge + th1); c.closePath(); c.fill();
+        c.fillStyle = '#c4bba6';
+        c.beginPath(); c.moveTo(tx - tw, my + edge); c.lineTo(tx + tw, my + edge); c.lineTo(tx + (Math.random() - 0.5) * tw, my + edge - th2); c.closePath(); c.fill();
+      }
+
+      // Cracks running down from the eyes.
+      c.strokeStyle = 'rgba(30,12,18,0.85)'; c.lineWidth = Math.max(1, u * 0.004); c.lineCap = 'round';
+      for (i = 0; i < 7; i++) {
+        var side = i % 2 ? 1 : -1;
+        var px = cx + side * rx * (0.3 + Math.random() * 0.3), py = cy - ry * 0.05 + Math.random() * ry * 0.1;
+        c.beginPath(); c.moveTo(px, py);
+        for (var s = 0; s < 6; s++) { px += (Math.random() - 0.5) * u * 0.05; py += u * 0.03 + Math.random() * u * 0.04; c.lineTo(px, py); }
+        c.stroke();
+      }
+
+      // Long black hair falling over the sides of the face.
+      c.strokeStyle = '#000'; c.lineWidth = u * 0.012;
+      for (i = 0; i < 46; i++) {
+        var hs = Math.random() < 0.5 ? -1 : 1;
+        var sx = cx + hs * rx * (0.2 + Math.random() * 0.75), sy = cy - ry * 0.98 + Math.random() * ry * 0.12;
+        c.beginPath(); c.moveTo(sx, sy);
+        c.bezierCurveTo(sx + hs * rx * 0.3 * Math.random(), cy - ry * 0.4, sx + hs * rx * (0.4 + Math.random() * 0.5), cy + ry * 0.2, sx + hs * rx * (0.5 + Math.random() * 0.7), cy + ry * (0.8 + Math.random() * 0.6));
+        c.stroke();
+      }
+
+      // Film static.
+      for (i = 0; i < 2500; i++) {
+        c.fillStyle = Math.random() < 0.5 ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.28)';
+        c.fillRect(Math.random() * W, Math.random() * H, 2, 2);
+      }
+    }
+
+    function fire() {
+      if (fired || reduceMotion) return;
+      fired = true;
+      var delay = 0;
+      if (Score.isRunning()) { Score.hush(true); delay = 1100; }
+      setTimeout(function () {
+        draw();
+        el.classList.add('on');
+        Score.scream();
+        setTimeout(function () { el.classList.remove('on'); Score.hush(false); }, 1150);
+      }, delay);
+    }
+    return { fire: fire };
+  })();
+
+  /* =========================================================
+     RSVP: builds a ready-to-send message for the hosts.
+     ========================================================= */
+  var form = document.getElementById('rsvp-form');
+  var done = document.getElementById('done');
+  var errorEl = document.getElementById('error');
+  var msgEl = document.getElementById('done-msg');
+  var titleEl = document.getElementById('done-title');
+  var textEl = document.getElementById('done-text');
+  var waLink = document.getElementById('wa-link');
+  var copyBtn = document.getElementById('copy');
+  var message = '';
+
+  ['fate-yes', 'fate-no'].forEach(function (id) {
+    document.getElementById(id).addEventListener('change', function () {
+      if (this.checked) Scare.fire();
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var fate = form.querySelector('input[name="fate"]:checked');
+    var costume = document.getElementById('costume').value.trim();
+    if (!name) { errorEl.textContent = 'The coven needs your name.'; document.getElementById('name').focus(); return; }
+    if (!fate) { errorEl.textContent = 'Choose your fate first.'; return; }
+    errorEl.textContent = '';
+    var coming = fate.value === 'yes';
+    message = 'RSVP Witches & Bitches (31.10)\n' +
+      name + ': ' + (coming ? "I'll be there!" : "Too scared, I'll pass.") +
+      (coming && costume ? '\nCostume: ' + costume : '');
+    titleEl.textContent = coming ? 'Your fate is sealed, ' + name + '.' : 'Coward. Noted, ' + name + '.';
+    textEl.textContent = coming
+      ? 'Send this message to Kyndra, Rania or Kiarra so the coven can count the guests.'
+      : 'Send this to Kyndra, Rania or Kiarra. The curse is mild. Probably.';
+    msgEl.textContent = message;
+    if (HOST_WHATSAPP) {
+      waLink.href = 'https://wa.me/' + HOST_WHATSAPP + '?text=' + encodeURIComponent(message);
+      waLink.hidden = false;
+    }
+    form.hidden = true;
+    done.hidden = false;
+    done.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+  });
+
+  copyBtn.addEventListener('click', function () {
+    var label = copyBtn.textContent;
+    function fallback() {
+      var range = document.createRange(); range.selectNodeContents(msgEl);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      copyBtn.textContent = 'Select and copy';
+      setTimeout(function () { copyBtn.textContent = label; }, 2500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(message).then(function () {
+        copyBtn.textContent = 'Copied';
+        setTimeout(function () { copyBtn.textContent = label; }, 2000);
+      }, fallback);
+    } else { fallback(); }
+  });
+
+  document.getElementById('again').addEventListener('click', function () {
+    done.hidden = true; form.hidden = false;
+    document.getElementById('name').focus();
+  });
+
+  Scene.run();
+})();
+</script>
+</body></html>
