@@ -952,7 +952,7 @@
       cx.clearRect(0, 0, W, H);
       drawStars(t);
       drawMoon();
-      if (!reduceMotion) {
+      if (true) { // vleermuizen bewegen altijd, ook bij "verminder beweging"
         for (var i = 0; i < bats.length; i++) {
           var b = bats[i];
           b.x += b.vx * dt; b.y += b.vy * dt + Math.sin(t * 0.002 + b.flap) * 0.0006;
@@ -965,7 +965,7 @@
         drawBat(bb.x * W, bb.y * H, bb.s * Math.min(W, H) / 220, Math.sin(bb.flap));
       }
       drawHill();
-      if (!reduceMotion) {
+      if (true) { // bliksem en animatielus altijd actief
         if (t > nextFlash) {
           flash = 1; bolt = makeBolt();
           nextFlash = t + rnd(11000, 24000);
